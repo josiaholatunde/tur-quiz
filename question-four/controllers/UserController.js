@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const users = require("../data/users")
-const { findById, removeUser, addUser, doesUserExistByEmail, findByEmail, findByName } = require('../service/UserService')
+const { findById, addUser, doesUserExistByEmail, findByEmail, findByName, deleteById } = require('../service/UserService')
+const ResponseService = require('../util/ApiResponse')
 
 module.exports = {
 
@@ -54,7 +55,7 @@ module.exports = {
     },
 
     addUser: async(req, res, next) => {
-        const errors = validationResult(req.body);
+        const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return ResponseService.send(
                 422,
@@ -91,12 +92,12 @@ module.exports = {
                     msg: 'User with id does not exist'
                 });
             }
-            removeUser(id);
-            return ResponseService.send(200, res, 'Successfully removed user', null, null);
+            deleteById(id);
+            return ResponseService.send(200, res, 'Successfully deleted user', null, null);
         } catch (ex) {
             console.log(ex);
             return ResponseService.send(500, res, 'An error occurred while deleting user', null, {
-                msg: 'An error occurred while creating user'
+                msg: 'An error occurred while deleting user'
             });
         }
     },

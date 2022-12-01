@@ -22,6 +22,7 @@ module.exports = {
             name
         }
        users.push(user);
+       return user;
     },
     doesUserExistByEmail: (email) => {
         return users.some(user => user.email === email);

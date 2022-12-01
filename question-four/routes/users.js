@@ -9,7 +9,7 @@ const userRoutes = (app) => {
 
     app.get(`${API_BASE_URL}/users/:id`, retrieveUserById);
 
-    app.post(`${API_BASE_URL}/users`, addUserValidator, addUser);
+    app.post(`${API_BASE_URL}/users`, [addUserValidator()], addUser);
 
     app.delete(`${API_BASE_URL}/users/:id`, removeUser);
 }
