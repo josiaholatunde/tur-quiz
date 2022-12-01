@@ -14,6 +14,7 @@ public class Node {
 
 
     public Node(String tagName, String text, boolean isSelfClosing) {
+        validateTagName(tagName);
         this.tagName = tagName;
         this.text = text;
         this.isSelfClosing = isSelfClosing;
@@ -25,6 +26,7 @@ public class Node {
     }
 
     public void setTagName(String tagName) {
+        if (tagName == null) throw new Exception("tagName is required");
         this.tagName = tagName;
     }
 
@@ -47,5 +49,9 @@ public class Node {
 
     public void setParent(Node parent) {
         this.parent = parent;
+    }
+
+    private void validateTagName(String tagName) {
+        if (tagName == null || tagName.trim().isEmpty()) throw new Exception("tagName is required");
     }
 }
