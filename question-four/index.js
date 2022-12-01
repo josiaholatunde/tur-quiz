@@ -21,6 +21,6 @@ app.use((req, res, next) => {
 const PORT  = process.env.PORT || 8000
 
 app.listen(PORT, () => {
-    require()
+    require('./routes/users')(app)
     console.log(`Server listening on port ${PORT}`)
 });
