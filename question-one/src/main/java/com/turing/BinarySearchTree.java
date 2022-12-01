@@ -71,6 +71,23 @@ public class BinarySearchTree {
         return root;
     }
 
+    public Node getSuccessorToNode(Node node) {
+        if (node.right != null) {
+            return getMinimumValueByNode(node.right);
+        }
+        Node currentSuccessor = null;
+        while (root != null) {
+            if (node.getKey() < root.getKey()) {
+                currentSuccessor = root;
+                root = root.left;
+            } else if (node.getKey() > root.getKey()) {
+                currentSuccessor = root;
+                root = root.right;
+            } else break;
+        }
+        return currentSuccessor;
+    }
+
     private int getMinValueOnRight(Node root)  {
         int value = root.getKey();
         while (root.left != null)  {
@@ -78,5 +95,13 @@ public class BinarySearchTree {
             root = root.left;
         }
         return value;
+    }
+
+    private Node getMinimumValueByNode(Node node) {
+        Node currentNode = node;
+        while (currentNode.left != null) {
+            currentNode = currentNode.left;
+        }
+        return currentNode;
     }
 }

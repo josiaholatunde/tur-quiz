@@ -16,7 +16,7 @@ public class Main {
         binarySearchTree.insert(7, "Joseph");
         binarySearchTree.insert(12, "Folake");
         binarySearchTree.insert(90, "Fidera");
-        binarySearchTree.insert(50, "Jacob");
+        Node bst = binarySearchTree.insert(50, "Jacob");
 
         System.out.println("Successfully inserted items into BST");
         Object value = binarySearchTree.search(90);
@@ -33,5 +33,9 @@ public class Main {
         binarySearchTree.deleteKey(90);
         System.out.println("Deleted key 90 in BST");
         binarySearchTree.printKeys();
+
+        System.out.println();
+        Node successor = binarySearchTree.getSuccessorToNode(bst.right);
+        System.out.println("Successor for node 90 is "+ successor.getKey());
     }
 }
